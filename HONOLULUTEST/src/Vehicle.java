@@ -16,6 +16,14 @@ public class Vehicle {
         this.odometer = od;
 
     }
+
+    public void displayInfo() {
+        System.out.println("Brand: " + brand);
+        System.out.println("Model: " + model);
+        System.out.println("Gear: " + gear);
+        System.out.println("Horsepower: " + horsePower);
+
+    }
     //Fordi vi har private, skal vi lave getter
     public String getBrand() {
         return brand;

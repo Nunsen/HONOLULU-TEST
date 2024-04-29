@@ -1,6 +1,7 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
         public class HONOLULUTEST {
@@ -101,10 +102,13 @@ import java.util.Scanner;
                 writer.close();
             }
         }
+        public static void pickCar(Scanner input) {
 
-        /*public static void pickCar(Scanner input) {
+            ArrayList<Vehicle> carList = new ArrayList<>();
 
-                System.out.println("Select car category:\nPress 1 for Family\nPress 2 for Luxery\nPress 3 for Sport\nPress 0 to quit.");
+            Family Volkswagen = new Family("Volkswagen", "Touran", "Manuel", "150", "Diesel", "UVW 101", "70,000");
+
+                System.out.println("Select car category:\nPress 1 for Family Car\nPress 2 for Luxery Car\nPress 3 for Sports Car\nPress 0 to quit.");
                 int answer = input.nextInt();
                 switch (answer) {
                     case 1:
@@ -127,3 +131,4 @@ import java.util.Scanner;
                     default:
                         System.out.println("Number is invalid, please choose a number between 0-3.");
 */
+
