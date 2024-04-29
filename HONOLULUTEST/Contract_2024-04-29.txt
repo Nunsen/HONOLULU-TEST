@@ -1,0 +1,13 @@
+This is a new contract created on 2024-04-29.
+Name of Driver: nunu
+Address: lsjdf
+Zip code: 8394
+City: kjfd
+Phone number: 9834
+E-mail: 4893
+Drives License Number: 8349
+Driver since date: 8394
+Comany Name: jsldf
+Company Address: lsjdf
+Company Phone number: 8394
+Company Registration Number: 3984
