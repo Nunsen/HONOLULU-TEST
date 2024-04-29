@@ -3,25 +3,19 @@ public class Vehicle {
     private String model;
     private String gear;
     private int horsePower;
-    private int fuelTime;
-    private int regNr;
+    private String fuelType;
+    private String regNr;
     private double odometer;
-    public Vehicle(String b, String mo, String g, int hp, int ft, int rn, double od ){
+    private String year;
+    public Vehicle(String b, String mo, String g, int hp, String ft, String rn, double od, String yr){
         this.brand = b;
         this.model = mo;
         this.gear = g;
         this.horsePower = hp;
-        this.fuelTime = ft;
+        this.fuelType = ft;
         this.regNr = rn;
         this.odometer = od;
-
-    }
-
-    public void displayInfo() {
-        System.out.println("Brand: " + brand);
-        System.out.println("Model: " + model);
-        System.out.println("Gear: " + gear);
-        System.out.println("Horsepower: " + horsePower);
+        this.year = yr;
 
     }
     //Fordi vi har private, skal vi lave getter
@@ -37,13 +31,17 @@ public class Vehicle {
     public int getHorsePower() {
         return horsePower;
     }
-    public int getFuelTime() {
-        return fuelTime;
+    public String getFuelType() {
+        return fuelType;
     }
-    public int getRegNr() {
+    public String getRegNr() {
         return regNr;
     }
-    public double odometer() {
+    public double getOdometer() {
         return odometer;
+    }
+
+    public String getYear() {
+        return year;
     }
 }
