@@ -7,9 +7,9 @@ public class Vehicle {
     int regNr;
     double odometer;
     public Vehicle(String b, String mo, String g, int hp, int ft, int rn, double od ){
-        brand = b;
-        model = mo;
-        gear = g;
+        this.brand = brand;
+        this.model = model;
+        this.gear = gear;
         horsePower = hp;
         fuelTime = ft;
         regNr = rn;
