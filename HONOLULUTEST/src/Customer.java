@@ -57,4 +57,8 @@ public class Customer {
     public int getDriverSD() {
         return driverSD;
     }
+
+    public String toString() {
+        return "Name of Driver: " + nameDriver + "\n" + "Address: " + address + "\n" + "Zip code: " + zip + "\n" + "City: " + city + "\n" + "Phone number: " + phoneNr + "\n" + "E-mail: " + email + "\n" + "Drives License Number: " + licenseNr + "\n" + "Driver since date: " + driverSD + "\n";
+    }
 }

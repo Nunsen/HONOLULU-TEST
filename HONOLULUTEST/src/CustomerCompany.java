@@ -2,10 +2,10 @@
 public class CustomerCompany extends Customer {
 
     //fortsætter med at lave dem private
-    private static String comName;
-    private static String comAddress;
-    private static int comPhone;
-    private static int comReg;
+    private String comName;
+    private String comAddress;
+    private int comPhone;
+    private int comReg;
 
     //ALLE parametre som customercompany subklassen nu bærer
     public CustomerCompany(String nameDriver, String address, int zip, String city, int phoneNr, String email, int licenseNr, int driverSD, String comName, String comAddress, int comPhone, int comReg) {
@@ -19,18 +19,25 @@ public class CustomerCompany extends Customer {
         this.comReg = comReg;
 
     }
-        //getter for de nye fields i denne subclass
-        public static String getComName() {
-            return comName;
-        }
-        public static String getComAddress() {
-            return comAddress;
-        }
 
-        public static int getComPhone() {
-            return comPhone;
-        }
-        public static int getComReg() {
-            return comReg;
-        }
+    //getter for de nye fields i denne subclass
+    public String getComName() {
+        return comName;
     }
+
+    public String getComAddress() {
+        return comAddress;
+    }
+
+    public int getComPhone() {
+        return comPhone;
+    }
+
+    public int getComReg() {
+        return comReg;
+    }
+
+    public String toString() {
+        return "Company Name: " + comName + "\n" + "Company Address: " + comAddress + "\n" + "Company Phone number: " + comPhone + "\n" + "Company Registration Number: " + comReg + "\n";
+    }
+}

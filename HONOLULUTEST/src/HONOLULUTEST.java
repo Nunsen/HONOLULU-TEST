@@ -13,7 +13,7 @@ import java.util.Scanner;
                 Customer c = customerType(input);
                 /*Vi opretter en slags pladsholder/variable som skal opbevare den valgte bil,
                 da den ikke indeholder noget lige nu sættes den til null */
-                Vehicle selectedCar = selectedCar= null;
+                Vehicle selectedCar = null;
                 pickCar(input,c);
                 //FileWriter.wrnullWriter();
             }
@@ -22,26 +22,27 @@ import java.util.Scanner;
             public static Customer customerType(Scanner input) throws IOException {
                 System.out.println("Press 1 for Private Renter\nPress 2 for Company Renter");
                 int customerType = input.nextInt();
+                input.nextLine();
 
                 System.out.println("Enter Name of Driver");
-                String nameDriver = input.next();
+                String nameDriver = input.nextLine();
 
                 System.out.println("Enter Adress");
-                String address = input.next();
-                input.nextLine();
-                input.nextLine();
+                String address = input.nextLine();
 
                 System.out.println("Enter zip code");
                 int zip = input.nextInt();
+                input.nextLine();
 
                 System.out.println("Enter city");
-                String city = input.next();
+                String city = input.nextLine();
 
                 System.out.println("Enter phone number");
                 int phoneNr = input.nextInt();
+                input.nextLine();
 
                 System.out.println("Enter e-mail");
-                String email = input.next();
+                String email = input.nextLine();
 
                 System.out.println("Enter Drivers License Number");
                 int licenseNr = input.nextInt();
@@ -49,8 +50,11 @@ import java.util.Scanner;
                 System.out.println("Enter Driver since date (MM-DD-YY");
                 int driverSD = input.nextInt();
 
-                /*if statement, scanneren leder efter svaret int customerType, 1 er for privat udlejer,
-                2 for company udlejer --> derfor else if, hvor man får lov at tilføje flere informationer til company*/
+                input.nextLine();
+
+                /*if statement, scanneren (input) leder efter svaret (int customerType), 1 er for privat udlejer,
+                2 for company udlejer --> else if, hvor man får lov at tilføje flere informationer til company.
+     */
                 if (customerType == 1) {
                     return new Customer(nameDriver, address, zip, city, phoneNr, email, licenseNr, driverSD);
                 } else if (customerType == 2) {
@@ -83,30 +87,23 @@ import java.util.Scanner;
                 //Filen oprettes, der tilføjes append:true da der senere skal tilføjes biltype til samme fil
                 FileWriter writer = new FileWriter(fileName,true);
 
-                //følgende informationer skrives ind i filen
+                //følgende informationer om kunden skrives ind i filen
+                writer.write("X****************************************************************X\n");
+                writer.write("\t\tContract\n");
+                writer.write("X****************************************************************X\n");
                 writer.write("This is a new contract created on " + currentDate + "." + "\n");
 
                 //TO STRING METODE
-                writer.write("Name of Driver: " + c.getNameDriver() + "\n");
-                writer.write("Address: " + c.getAddress() + "\n");
-                writer.write("Zip code: " + c.getZip() + "\n");
-                writer.write("City: " + c.getCity() + "\n");
-                writer.write("Phone number: " + c.getPhoneNr() + "\n");
-                writer.write("E-mail: " + c.getEmail() + "\n");
-                writer.write("Drives License Number: " + c.getLicenseNr() + "\n");
-                writer.write("Driver since date: " + c.getDriverSD() + "\n");
+                writer.write(c.toString());
 
         /*HVIS boolean customerIsCompany er sand(2), og comName (fra CustomerCompany klassen
         IKKE(!) isEmpty, dvs. den er ikke tom, SÅ skal det printes med over i filen
         Dette sikrer derfor at der ikke printes company information ud, hvis ikke det er nødvendigt */
-                if (customerIsCompany && CustomerCompany.getComName() != null && !CustomerCompany.getComName().isEmpty()) {
-                    //if (customerIsCompany && !CustomerCompany.getComName().isEmpty()){
-                    writer.write("Comany Name: " + CustomerCompany.getComName() + "\n");
-                    writer.write("Company Address: " + CustomerCompany.getComAddress() + "\n");
-                    writer.write("Company Phone number: " + CustomerCompany.getComPhone() + "\n");
-                    writer.write("Company Registration Number: " + CustomerCompany.getComReg() + "\n");
+                if (customerIsCompany && c instanceof CustomerCompany) {
+                    CustomerCompany customerCompany = (CustomerCompany) c; // Cast c to CustomerCompany
+                    writer.write(customerCompany.toString());
                 }
-                // følgende informationer skrives ind i filen
+                //er car IKKE nul dvs. at der er valgt en bil med informationre i toString metoden, som så gennem filewriter append skrives ind i filen
                 if (car != null) { // Check if car is not null before using it
                     writer.write("\nChosen Car Information:\n");
                     writer.write(car.toString() + "\n");
@@ -117,7 +114,6 @@ import java.util.Scanner;
             }
 
             public static void pickCar(Scanner input, Customer customer) throws IOException {
-
                 ArrayList<Vehicle> carList = new ArrayList<>();
 
                 Family Volkswagen = new Family("Volkswagen", "Touran", "Manuel", 150, "Diesel", "UVW 101", 70000, "2017");
@@ -143,7 +139,7 @@ import java.util.Scanner;
 
                 System.out.println("Select car category:\nPress 1 for Family Car\nPress 2 for Luxery Car\nPress 3 for Sports Car\nPress 0 to quit.");
                 int answer = input.nextInt();
-                int choice;
+                int choiceOfCar;
                 Vehicle selectedCar;
 
                 switch (answer) {
@@ -158,10 +154,10 @@ import java.util.Scanner;
                             System.out.println((i + 1) + ": " + selectedCar.toString());
                         }
                         System.out.println("Press 1 for Volkswagen\nPress 2 for Toyota\nPress 3 for Ford");
-                        choice = input.nextInt();
-                        selectedCar = carList.get(choice - 1);
+                        choiceOfCar = input.nextInt();
+                        selectedCar = carList.get(choiceOfCar - 1);
                         writeContract(customer, true, selectedCar);
-                        carList.get(choice - 1);
+                        carList.get(choiceOfCar - 1);
                         break;
 
                     case 2:
@@ -171,10 +167,10 @@ import java.util.Scanner;
                             System.out.println((i + 1) + ": " + selectedCar.toString());
                         }
                         System.out.println("Press 1 for Mercedes\nPress 2 for BMW\nPress 3 for Audi");
-                        choice = input.nextInt();
-                        selectedCar = carList.get(choice - 1);
+                        choiceOfCar = input.nextInt();
+                        selectedCar = carList.get(choiceOfCar - 1);
                         writeContract(customer, true, selectedCar);
-                        carList.get(choice - 1);
+                        carList.get(choiceOfCar - 1);
                         break;
 
                     case 3:
@@ -184,8 +180,8 @@ import java.util.Scanner;
                             System.out.println((i + 1) + ": " + selectedCar.toString());
                         }
                         System.out.println("Press 1 for Porsche\nPress 2 for Chevrolet\nPress 3 for Ford Mustang");
-                        choice = input.nextInt();
-                        selectedCar = carList.get(choice - 1);
+                        choiceOfCar = input.nextInt();
+                        selectedCar = carList.get(choiceOfCar - 1);
                         writeContract(customer, true, selectedCar);
                         break;
 
