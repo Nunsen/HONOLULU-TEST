@@ -7,15 +7,18 @@ import java.util.Scanner;
         public class HONOLULUTEST {
             public static void main(String[] args) throws IOException {
                 Scanner input = new Scanner(System.in);
-                //Kalder ourMenu() metoden fra OurMenu klassen, som specifikt står får denne opgave
+                //Kalder ourMenu() metoden fra OurMenu klassen, som specifikt står for denne opgave
                 OurMenu.ourMenu();
-                Customer customer = customerType(input);
-                writeContract(customer, true);
-                pickCar(input);
+                //Vi deklarerer en variable c af typen Customer, kalder metoden customerType med Scanner parameter
+                Customer c = customerType(input);
+                /*Vi opretter en slags pladsholder/variable som skal opbevare den valgte bil,
+                da den ikke indeholder noget lige nu sættes den til null */
+                Vehicle selectedCar = selectedCar= null;
+                pickCar(input,c);
                 //FileWriter.wrnullWriter();
             }
 
-            //Første metode der finder kundetype
+            //Første metode der finder kundetypen enten private eller company
             public static Customer customerType(Scanner input) throws IOException {
                 System.out.println("Press 1 for Private Renter\nPress 2 for Company Renter");
                 int customerType = input.nextInt();
@@ -70,19 +73,20 @@ import java.util.Scanner;
                 return null;
             }
 
-            public static void writeContract(Customer c, boolean customerIsCompany) throws IOException {
+            public static void writeContract(Customer c, boolean customerIsCompany, Vehicle car) throws IOException {
                 //anvender localdate til at bruge den aktuelle dato på hvornår kontrakten oprettes
                 LocalDate currentDate = LocalDate.now();
 
                 //Vi vil have systemet til at oprette en fil der hedder Contract + dagens dato, fremfor at vi laver en fil
                 String fileName = "Contract_" + currentDate + ".txt";
 
-                //Filen oprettes
-                FileWriter writer = new FileWriter(fileName);
+                //Filen oprettes, der tilføjes append:true da der senere skal tilføjes biltype til samme fil
+                FileWriter writer = new FileWriter(fileName,true);
 
                 //følgende informationer skrives ind i filen
                 writer.write("This is a new contract created on " + currentDate + "." + "\n");
 
+                //TO STRING METODE
                 writer.write("Name of Driver: " + c.getNameDriver() + "\n");
                 writer.write("Address: " + c.getAddress() + "\n");
                 writer.write("Zip code: " + c.getZip() + "\n");
@@ -102,10 +106,18 @@ import java.util.Scanner;
                     writer.write("Company Phone number: " + CustomerCompany.getComPhone() + "\n");
                     writer.write("Company Registration Number: " + CustomerCompany.getComReg() + "\n");
                 }
+                // følgende informationer skrives ind i filen
+                if (car != null) { // Check if car is not null before using it
+                    writer.write("\nChosen Car Information:\n");
+                    writer.write(car.toString() + "\n");
+                } else {
+                    writer.write("\nNo car information available.\n");
+                }
                 writer.close();
             }
 
-            public static void pickCar(Scanner input) {
+            public static void pickCar(Scanner input, Customer customer) throws IOException {
+
                 ArrayList<Vehicle> carList = new ArrayList<>();
 
                 Family Volkswagen = new Family("Volkswagen", "Touran", "Manuel", 150, "Diesel", "UVW 101", 70000, "2017");
@@ -131,33 +143,59 @@ import java.util.Scanner;
 
                 System.out.println("Select car category:\nPress 1 for Family Car\nPress 2 for Luxery Car\nPress 3 for Sports Car\nPress 0 to quit.");
                 int answer = input.nextInt();
+                int choice;
+                Vehicle selectedCar;
 
                 switch (answer) {
                     case 1:
+                        /*vi laver et forloop til at printe vores arraylist som består af 9 pladser
+                        I første case vil vi kun printe de tre første biler derfor 0:i<3.
+                        For at printe informationen og ikke kun tallene 1-3, kalder vi på vores toString metode
+                        fra Vehicle super klassen*/
                         System.out.println("Family Cars:");
                         for (int i = 0; i < 3; i++) {
-                            Vehicle car;
-                            car = car.get(carList);
-                            System.out.println((i + 1));
+                            selectedCar = carList.get(i);
+                            System.out.println((i + 1) + ": " + selectedCar.toString());
                         }
-                            break;
+                        System.out.println("Press 1 for Volkswagen\nPress 2 for Toyota\nPress 3 for Ford");
+                        choice = input.nextInt();
+                        selectedCar = carList.get(choice - 1);
+                        writeContract(customer, true, selectedCar);
+                        carList.get(choice - 1);
+                        break;
 
-                            case 2:
-                                System.out.println("Press 1 for x");
-                                break;
-
-
-                            case 3:
-                                System.out.println("Press 1 for x jfdsjf");
-                                break;
-
-                            case 0:
-                                System.out.println("Thank you, Goodbye!");
-                                System.exit(0);
-
-                            default:
-                                System.out.println("Number is invalid, please choose a number between 0-3.");
-
+                    case 2:
+                        System.out.println("Luxery Cars: ");
+                        for (int i = 3; i < 6; i++) {
+                            selectedCar = carList.get(i);
+                            System.out.println((i + 1) + ": " + selectedCar.toString());
                         }
+                        System.out.println("Press 1 for Mercedes\nPress 2 for BMW\nPress 3 for Audi");
+                        choice = input.nextInt();
+                        selectedCar = carList.get(choice - 1);
+                        writeContract(customer, true, selectedCar);
+                        carList.get(choice - 1);
+                        break;
+
+                    case 3:
+                        System.out.println("Sports Cars: ");
+                        for (int i = 6; i < 9; i++) {
+                            selectedCar = carList.get(i);
+                            System.out.println((i + 1) + ": " + selectedCar.toString());
+                        }
+                        System.out.println("Press 1 for Porsche\nPress 2 for Chevrolet\nPress 3 for Ford Mustang");
+                        choice = input.nextInt();
+                        selectedCar = carList.get(choice - 1);
+                        writeContract(customer, true, selectedCar);
+                        break;
+
+                    case 0:
+                        System.out.println("Thank you, Goodbye!");
+                        System.exit(0);
+
+                    default:
+                        System.out.println("Number is invalid, please choose a number between 0-3.");
+
                 }
             }
+        }
