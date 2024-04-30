@@ -1,0 +1,9 @@
+This is a new contract created on 2024-04-29.
+Name of Driver: nsdif
+Address: fkf
+Zip code: 234
+City: 234
+Phone number: 234
+E-mail: 234
+Drives License Number: 23
+Driver since date: 423

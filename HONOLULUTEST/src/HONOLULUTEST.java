@@ -136,7 +136,8 @@ import java.util.Scanner;
                     case 1:
                         System.out.println("Family Cars:");
                         for (int i = 0; i < 3; i++) {
-                            Vehicle car = car.get(carList);
+                            Vehicle car;
+                            car = car.get(carList);
                             System.out.println((i + 1));
                         }
                             break;
