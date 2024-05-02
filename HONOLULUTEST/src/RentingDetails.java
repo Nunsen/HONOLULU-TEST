@@ -15,6 +15,6 @@ public class RentingDetails {
         return endDate;
     }
     public String toString() {
-        return ("Start of rent: " + startDate + "\nEnd of rent: " + endDate);
+        return ("\nStart of rent: " + startDate + "\nEnd of rent: " + endDate + "\n");
     }
 }

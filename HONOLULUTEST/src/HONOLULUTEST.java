@@ -15,8 +15,9 @@ import java.util.Scanner;
                 /*Vi opretter en slags pladsholder/variable som skal opbevare den valgte bil,
                 da den ikke indeholder noget lige nu sættes den til null */
                 Vehicle selectedCar = null;
-                pickCar(input, c);
-                pickTimeOfRent(input);
+                RentingDetails newRenter = pickTimeOfRent(input);
+                pickCar(input, c, newRenter);
+
             }
             //Første metode der finder kundetypen enten private eller company
             public static Customer customerType(Scanner input) throws IOException {
@@ -81,7 +82,7 @@ import java.util.Scanner;
                 }
                 return null;
             }
-            public static void writeContract(Customer c, boolean customerIsCompany, Vehicle car) throws IOException {
+            public static void writeContract(Customer c, boolean customerIsCompany, Vehicle car, RentingDetails newRenter) throws IOException {
                 //anvender localdate til at bruge den aktuelle dato på hvornår kontrakten oprettes
                 LocalDate currentDate = LocalDate.now();
                 //anvender yderligere et customerID med en metode, der generer et nyt unikt navn, ved brug af en counter
@@ -116,17 +117,20 @@ import java.util.Scanner;
                 } else {
                     writer.write("\nNo car information available.\n");
                 }
-                writer.write("Duration of Rent");
-                writer.write(RentingDetails.toString() + "\n");
+
+                writer.write("\nDuration of Rent:");
+                writer.write(newRenter.toString());
 
                 writer.close();
             }
+
+            private static int contractCounter = 0;
             public static String generateCustomerId() {
                 int contractCounter = 0;
                 contractCounter++;
                 return "C" + contractCounter++;
             }
-            public static void pickCar(Scanner input, Customer customer) throws IOException {
+            public static void pickCar(Scanner input, Customer customer, RentingDetails newRenter) throws IOException {
                 ArrayList<Vehicle> carList = new ArrayList<>();
 
                 Family Volkswagen = new Family("Volkswagen", "Touran", "Manuel", 150, "Diesel", "UVW 101", 70000, "2017");
@@ -169,7 +173,7 @@ import java.util.Scanner;
                         System.out.println("Press 1 for Volkswagen\nPress 2 for Toyota\nPress 3 for Ford");
                         choiceOfCar = input.nextInt();
                         selectedCar = carList.get(choiceOfCar - 1);
-                        writeContract(customer, true, selectedCar);
+                        writeContract(customer, true, selectedCar, newRenter);
                         carList.get(choiceOfCar - 1);
                         break;
 
@@ -182,7 +186,7 @@ import java.util.Scanner;
                         System.out.println("Press 4 for Mercedes\nPress 5 for BMW\nPress 6 for Audi");
                         choiceOfCar = input.nextInt();
                         selectedCar = carList.get(choiceOfCar - 1);
-                        writeContract(customer, true, selectedCar);
+                        writeContract(customer, true, selectedCar, newRenter);
                         carList.get(choiceOfCar - 1);
                         break;
 
@@ -195,7 +199,7 @@ import java.util.Scanner;
                         System.out.println("Press 7 for Porsche\nPress 8 for Chevrolet\nPress 9 for Ford Mustang");
                         choiceOfCar = input.nextInt();
                         selectedCar = carList.get(choiceOfCar - 1);
-                        writeContract(customer, true, selectedCar);
+                        writeContract(customer, true, selectedCar, newRenter);
                         break;
 
                     case 0:
@@ -204,16 +208,18 @@ import java.util.Scanner;
 
                     default:
                         System.out.println("Number is invalid, please choose a number between 0-3.");
-                        pickCar(input, customer);
+                        pickCar(input, customer, newRenter);
                 }
             }
 
-            public static void pickTimeOfRent(Scanner input) {
+            public static RentingDetails pickTimeOfRent(Scanner input) {
                 System.out.println("Enter Start Date of Rent: ");
                 String startDate = input.next();
 
                 System.out.println("Enter End Date of Rent: ");
                 String endDate = input.next();
+
+                return new RentingDetails(startDate, endDate);
 
             }
         }
