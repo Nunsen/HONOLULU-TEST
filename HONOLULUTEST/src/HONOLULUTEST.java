@@ -24,35 +24,34 @@ import java.util.Scanner;
                 int customerType = input.nextInt();
                 input.nextLine();
 
-                System.out.println("Enter Name of Driver");
-                String nameDriver = input.nextLine();
-
-                System.out.println("Enter Adress");
-                String address = input.nextLine();
-
-                System.out.println("Enter zip code");
-                int zip = input.nextInt();
-                input.nextLine();
-
-                System.out.println("Enter city");
-                String city = input.nextLine();
-
-                System.out.println("Enter phone number");
-                int phoneNr = input.nextInt();
-                input.nextLine();
-
-                System.out.println("Enter e-mail");
-                String email = input.nextLine();
-
-                System.out.println("Enter Drivers License Number");
-                int licenseNr = input.nextInt();
-
-                System.out.println("Enter Driver since date (MM-DD-YY");
-                int driverSD = input.nextInt();
-                input.nextLine();
-
                 switch (customerType) {
                     case 1:
+                        System.out.println("Enter Name of Driver");
+                        String nameDriver = input.nextLine();
+
+                        System.out.println("Enter Adress");
+                        String address = input.nextLine();
+
+                        System.out.println("Enter zip code");
+                        int zip = input.nextInt();
+                        input.nextLine();
+
+                        System.out.println("Enter city");
+                        String city = input.nextLine();
+
+                        System.out.println("Enter phone number");
+                        int phoneNr = input.nextInt();
+                        input.nextLine();
+
+                        System.out.println("Enter e-mail");
+                        String email = input.nextLine();
+
+                        System.out.println("Enter Drivers License Number");
+                        int licenseNr = input.nextInt();
+
+                        System.out.println("Enter Driver since date (MM-DD-YY");
+                        int driverSD = input.nextInt();
+                        input.nextLine();
                         return new Customer(nameDriver, address, zip, city, phoneNr, email, licenseNr, driverSD);
                     case 2:
                         System.out.println("Enter Company Name:");
@@ -72,6 +71,7 @@ import java.util.Scanner;
                         System.out.println("Invalid input. Please enter 1 for individual or 2 for company.");
                         return null;
                 }
+
             }
             public static void writeContract(Customer c, boolean customerIsCompany, Vehicle car) throws IOException {
                 //anvender localdate til at bruge den aktuelle dato på hvornår kontrakten oprettes
