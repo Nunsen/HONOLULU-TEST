@@ -123,8 +123,6 @@ import java.util.Scanner;
 
                 writer.close();
             }
-
-            private static int contractCounter = 0;
             public static String generateCustomerId() {
                 int contractCounter = 0;
                 contractCounter++;
