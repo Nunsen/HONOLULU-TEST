@@ -14,46 +14,54 @@ import java.util.Scanner;
                 /*Vi opretter en slags pladsholder/variable som skal opbevare den valgte bil,
                 da den ikke indeholder noget lige nu sættes den til null */
                 Vehicle selectedCar = null;
-                pickCar(input,c);
+                pickCar(input, c);
                 //FileWriter.wrnullWriter();
             }
-
             //Første metode der finder kundetypen enten private eller company
             public static Customer customerType(Scanner input) throws IOException {
                 System.out.println("Press 1 for Private Renter\nPress 2 for Company Renter");
                 int customerType = input.nextInt();
                 input.nextLine();
 
-                switch (customerType) {
-                    case 1:
-                        System.out.println("Enter Name of Driver");
-                        String nameDriver = input.nextLine();
+                String nameDriver = null;
+                String address = null;
+                int zip = 0;
+                String city = null;
+                int phoneNr = 0;
+                String email = null;
+                int licenseNr = 0;
+                int driverSD = 0;
 
-                        System.out.println("Enter Adress");
-                        String address = input.nextLine();
+                if (customerType == 1) {
+                    System.out.println("Enter Name of Driver");
+                    nameDriver = input.nextLine();
 
-                        System.out.println("Enter zip code");
-                        int zip = input.nextInt();
-                        input.nextLine();
+                    System.out.println("Enter Adress");
+                    address = input.nextLine();
 
-                        System.out.println("Enter city");
-                        String city = input.nextLine();
+                    System.out.println("Enter zip code");
+                    zip = input.nextInt();
+                    input.nextLine();
 
-                        System.out.println("Enter phone number");
-                        int phoneNr = input.nextInt();
-                        input.nextLine();
+                    System.out.println("Enter city");
+                    city = input.nextLine();
 
-                        System.out.println("Enter e-mail");
-                        String email = input.nextLine();
+                    System.out.println("Enter phone number");
+                    phoneNr = input.nextInt();
+                    input.nextLine();
 
-                        System.out.println("Enter Drivers License Number");
-                        int licenseNr = input.nextInt();
+                    System.out.println("Enter e-mail");
+                    email = input.nextLine();
 
-                        System.out.println("Enter Driver since date (MM-DD-YY");
-                        int driverSD = input.nextInt();
-                        input.nextLine();
+                    System.out.println("Enter Drivers License Number");
+                    licenseNr = input.nextInt();
+
+                    System.out.println("Enter Driver since date (MM-DD-YY");
+                    driverSD = input.nextInt();
+                    input.nextLine();
                         return new Customer(nameDriver, address, zip, city, phoneNr, email, licenseNr, driverSD);
-                    case 2:
+
+                 } if (customerType == 2) {
                         System.out.println("Enter Company Name:");
                         String comName = input.next();
 
@@ -65,13 +73,12 @@ import java.util.Scanner;
 
                         System.out.println("Enter Company Registration Number (6 digits):");
                         int comReg = input.nextInt();
-
                         return new CustomerCompany(nameDriver, address, zip, city, phoneNr, email, licenseNr, driverSD, comName, comAddress, comPhone, comReg);
-                    default:
-                        System.out.println("Invalid input. Please enter 1 for individual or 2 for company.");
-                        return null;
+                 }else {
+                System.out.println("Invalid input. Please enter 1 for individual or 2 for company.");
+                customerType(input);
                 }
-
+                return null;
             }
             public static void writeContract(Customer c, boolean customerIsCompany, Vehicle car) throws IOException {
                 //anvender localdate til at bruge den aktuelle dato på hvornår kontrakten oprettes
@@ -187,7 +194,6 @@ import java.util.Scanner;
 
                     default:
                         System.out.println("Number is invalid, please choose a number between 0-3.");
-
                 }
             }
         }
