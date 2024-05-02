@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
         public class HONOLULUTEST {
+           //private static int contractCounter = 0;
             public static void main(String[] args) throws IOException {
                 Scanner input = new Scanner(System.in);
 
@@ -82,7 +83,7 @@ import java.util.Scanner;
                 String customerId = generateCustomerId();
 
                 //Vi vil have systemet til at oprette en fil der hedder Contract + dagens dato, fremfor at vi laver en fil
-                String fileName = "Contract_" + customerId + /*"_" + currentDate + */".txt";
+                String fileName = "Contract_" + c.getNameDriver() + /*"_" + currentDate + */".txt";
 
                 //Filen oprettes, der tilføjes append:true da der senere skal tilføjes biltype til samme fil
                 FileWriter writer = new FileWriter(fileName, true);
@@ -116,10 +117,9 @@ import java.util.Scanner;
 
                 writer.close();
             }
-            private static int contractCounter = 0;
+
             public static String generateCustomerId() {
-                contractCounter++;
-                return "C" + contractCounter++;
+                return "C";
             }
             public static void pickCar(Scanner input, Customer customer, RentingDetails newRenter) throws IOException {
                 ArrayList<Vehicle> carList = new ArrayList<>();

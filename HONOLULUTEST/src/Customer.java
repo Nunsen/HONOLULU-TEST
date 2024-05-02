@@ -13,6 +13,8 @@ public class Customer {
     private int licenseNr;
     private int driverSD;
 
+    //private int customerId;
+
     //setter navnene, så vi kan overload, variable med samme navn
     public Customer(String nameDriver, String address, int zip, String city, int phoneNr, String email, int licenseNr, int driverSD) {
         this.nameDriver = nameDriver;
@@ -23,6 +25,7 @@ public class Customer {
         this.email = email;
         this.licenseNr = licenseNr;
         this.driverSD = driverSD;
+        //this.customerId = customerId;
     }
 
     //getter, eftersom vi har lavet vores fields private
@@ -57,6 +60,8 @@ public class Customer {
     public int getDriverSD() {
         return driverSD;
     }
+
+    //public int getCustomerId(){return customerId;}
 
     public String toString() {
         return "Name of Driver: " + nameDriver + "\n" + "Address: " + address + "\n" + "Zip code: " + zip + "\n" + "City: " + city + "\n" + "Phone number: " + phoneNr + "\n" + "E-mail: " + email + "\n" + "Drives License Number: " + licenseNr + "\n" + "Driver since date: " + driverSD + "\n";
