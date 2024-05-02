@@ -16,7 +16,7 @@ import java.util.Scanner;
                 da den ikke indeholder noget lige nu sættes den til null */
                 Vehicle selectedCar = null;
                 pickCar(input, c);
-                //FileWriter.wrnullWriter();
+                pickTimeOfRent(input);
             }
             //Første metode der finder kundetypen enten private eller company
             public static Customer customerType(Scanner input) throws IOException {
@@ -86,46 +86,45 @@ import java.util.Scanner;
                 LocalDate currentDate = LocalDate.now();
                 //anvender yderligere et customerID med en metode, der generer et nyt unikt navn, ved brug af en counter
                 String customerId = generateCustomerId();
-                int contractCounter = 0;
 
                 //Vi vil have systemet til at oprette en fil der hedder Contract + dagens dato, fremfor at vi laver en fil
                 String fileName = "Contract_" + customerId + /*"_" + currentDate + */".txt";
-                contractCounter++;
 
                 //Filen oprettes, der tilføjes append:true da der senere skal tilføjes biltype til samme fil
-                    FileWriter writer = new FileWriter(fileName, true);
+                FileWriter writer = new FileWriter(fileName, true);
 
-                    //følgende informationer om kunden skrives ind i filen
-                    writer.write("X****************************************************************X\n");
-                    writer.write("\t\tContract\n");
-                    writer.write("X****************************************************************X\n");
-                    writer.write("This is a new contract created on " + currentDate + "." + "\n");
+                //følgende informationer om kunden skrives ind i filen
+                writer.write("X****************************************************************X\n");
+                writer.write("\t\tContract\n");
+                writer.write("X****************************************************************X\n");
+                writer.write("This is a new contract created on " + currentDate + "." + "\n");
 
-                    //TO STRING METODE
-                    writer.write(c.toString());
+                //TO STRING METODE
+                writer.write(c.toString());
 
         /*HVIS boolean customerIsCompany er sand(2), og comName (fra CustomerCompany klassen
         IKKE(!) isEmpty, dvs. den er ikke tom, SÅ skal det printes med over i filen
         Dette sikrer derfor at der ikke printes company information ud, hvis ikke det er nødvendigt */
-                    if (customerIsCompany && c instanceof CustomerCompany) {
-                        CustomerCompany customerCompany = (CustomerCompany) c; // Cast c to CustomerCompany
-                        writer.write(customerCompany.toString());
-                    }
-                    //er car IKKE nul dvs. at der er valgt en bil med informationre i toString metoden, som så gennem filewriter append skrives ind i filen
-                    if (car != null) { // Check if car is not null before using it
-                        writer.write("\nChosen Car Information:\n");
-                        writer.write(car.toString() + "\n");
-                    } else {
-                        writer.write("\nNo car information available.\n");
-                    }
-                    writer.close();
+                if (customerIsCompany && c instanceof CustomerCompany) {
+                    CustomerCompany customerCompany = (CustomerCompany) c; // Cast c to CustomerCompany
+                    writer.write(customerCompany.toString());
+                }
+                //er car IKKE nul dvs. at der er valgt en bil med informationre i toString metoden, som så gennem filewriter append skrives ind i filen
+                if (car != null) { // Check if car is not null before using it
+                    writer.write("\nChosen Car Information:\n");
+                    writer.write(car.toString() + "\n");
+                } else {
+                    writer.write("\nNo car information available.\n");
+                }
+                writer.write("Duration of Rent");
+                writer.write(RentingDetails.toString() + "\n");
+
+                writer.close();
             }
-
-            private static String generateCustomerId() {
-                int contractCounter = 1;
+            public static String generateCustomerId() {
+                int contractCounter = 0;
                 contractCounter++;
-
-                return "C" + contractCounter;
+                return "C" + contractCounter++;
             }
             public static void pickCar(Scanner input, Customer customer) throws IOException {
                 ArrayList<Vehicle> carList = new ArrayList<>();
@@ -207,5 +206,14 @@ import java.util.Scanner;
                         System.out.println("Number is invalid, please choose a number between 0-3.");
                         pickCar(input, customer);
                 }
+            }
+
+            public static void pickTimeOfRent(Scanner input) {
+                System.out.println("Enter Start Date of Rent: ");
+                String startDate = input.next();
+
+                System.out.println("Enter End Date of Rent: ");
+                String endDate = input.next();
+
             }
         }
