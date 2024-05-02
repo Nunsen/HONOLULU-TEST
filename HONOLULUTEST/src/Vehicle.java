@@ -46,6 +46,6 @@ public class Vehicle {
     }
 
     public String toString(){
-        return ("Brand: "+brand+"\nModel: "+model+"\nGear: "+gear+"\nHorse power: "+"\nFueltype "+fuelType+"\nRegistration Number: " + regNr + "\nOdometer: " + odometer +"\nYear: "+ year);
+        return ("Brand: "+brand+"\nModel: "+model+"\nGear: "+gear+"\nHorse power: "+ horsePower + "\nFueltype: "+fuelType+"\nRegistration Number: " + regNr + "\nOdometer: " + odometer +"\nYear: "+ year);
     }
 }

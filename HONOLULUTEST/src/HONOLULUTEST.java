@@ -49,34 +49,30 @@ import java.util.Scanner;
 
                 System.out.println("Enter Driver since date (MM-DD-YY");
                 int driverSD = input.nextInt();
-
                 input.nextLine();
 
-                /*if statement, scanneren (input) leder efter svaret (int customerType), 1 er for privat udlejer,
-                2 for company udlejer --> else if, hvor man får lov at tilføje flere informationer til company.
-     */
-                if (customerType == 1) {
-                    return new Customer(nameDriver, address, zip, city, phoneNr, email, licenseNr, driverSD);
-                } else if (customerType == 2) {
-                    System.out.println("Enter Company Name");
-                    String comName = input.next();
+                switch (customerType) {
+                    case 1:
+                        return new Customer(nameDriver, address, zip, city, phoneNr, email, licenseNr, driverSD);
+                    case 2:
+                        System.out.println("Enter Company Name:");
+                        String comName = input.next();
 
-                    System.out.println("Enter Company Address");
-                    String comAddress = input.next();
+                        System.out.println("Enter Company Address:");
+                        String comAddress = input.next();
 
-                    System.out.println("Enter Company Phone number");
-                    int comPhone = input.nextInt();
+                        System.out.println("Enter Company Phone number:");
+                        int comPhone = input.nextInt();
 
-                    System.out.println("Enter Company Registration Number (6 digits)");
-                    int comReg = input.nextInt();
+                        System.out.println("Enter Company Registration Number (6 digits):");
+                        int comReg = input.nextInt();
 
-                    //returnerer med de ekstra informationer
-                    return new CustomerCompany(nameDriver, address, zip, city, phoneNr, email, licenseNr, driverSD, comName, comAddress, comPhone, comReg);
+                        return new CustomerCompany(nameDriver, address, zip, city, phoneNr, email, licenseNr, driverSD, comName, comAddress, comPhone, comReg);
+                    default:
+                        System.out.println("Invalid input. Please enter 1 for individual or 2 for company.");
+                        return null;
                 }
-                System.out.println("Invalid input for customer type.");
-                return null;
             }
-
             public static void writeContract(Customer c, boolean customerIsCompany, Vehicle car) throws IOException {
                 //anvender localdate til at bruge den aktuelle dato på hvornår kontrakten oprettes
                 LocalDate currentDate = LocalDate.now();
