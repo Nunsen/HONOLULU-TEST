@@ -25,45 +25,37 @@ import java.util.Scanner;
                 int customerType = input.nextInt();
                 input.nextLine();
 
-                String nameDriver = null;
-                String address = null;
-                int zip = 0;
-                String city = null;
-                int phoneNr = 0;
-                String email = null;
-                int licenseNr = 0;
-                int driverSD = 0;
+                System.out.println("Enter Name of Driver");
+                String nameDriver = input.nextLine();
+
+                System.out.println("Enter Adress");
+                String address = input.nextLine();
+
+                System.out.println("Enter zip code");
+                int zip = input.nextInt();
+                input.nextLine();
+
+                System.out.println("Enter city");
+                String city = input.nextLine();
+
+                System.out.println("Enter phone number");
+                int phoneNr = input.nextInt();
+                input.nextLine();
+
+                System.out.println("Enter e-mail");
+                String email = input.nextLine();
+
+                System.out.println("Enter Drivers License Number");
+                int licenseNr = input.nextInt();
+
+                System.out.println("Enter Driver since date (MM-DD-YY");
+                int driverSD = input.nextInt();
+                input.nextLine();
 
                 if (customerType == 1) {
-                    System.out.println("Enter Name of Driver");
-                    nameDriver = input.nextLine();
-
-                    System.out.println("Enter Adress");
-                    address = input.nextLine();
-
-                    System.out.println("Enter zip code");
-                    zip = input.nextInt();
-                    input.nextLine();
-
-                    System.out.println("Enter city");
-                    city = input.nextLine();
-
-                    System.out.println("Enter phone number");
-                    phoneNr = input.nextInt();
-                    input.nextLine();
-
-                    System.out.println("Enter e-mail");
-                    email = input.nextLine();
-
-                    System.out.println("Enter Drivers License Number");
-                    licenseNr = input.nextInt();
-
-                    System.out.println("Enter Driver since date (MM-DD-YY");
-                    driverSD = input.nextInt();
-                    input.nextLine();
                         return new Customer(nameDriver, address, zip, city, phoneNr, email, licenseNr, driverSD);
 
-                 } if (customerType == 2) {
+                 } else if (customerType == 2) {
                         System.out.println("Enter Company Name:");
                         String comName = input.next();
 
@@ -75,6 +67,7 @@ import java.util.Scanner;
 
                         System.out.println("Enter Company Registration Number (6 digits):");
                         int comReg = input.nextInt();
+
                         return new CustomerCompany(nameDriver, address, zip, city, phoneNr, email, licenseNr, driverSD, comName, comAddress, comPhone, comReg);
                  }else {
                 System.out.println("Invalid input. Please enter 1 for individual or 2 for company.");
@@ -98,7 +91,7 @@ import java.util.Scanner;
                 writer.write("X****************************************************************X\n");
                 writer.write("\t\tContract\n");
                 writer.write("X****************************************************************X\n");
-                writer.write("This is a new contract created on " + currentDate + "." + "\n");
+                writer.write("This is a new contract created on " + currentDate + "For Customer: " + customerId + "." + "\n");
 
                 //TO STRING METODE
                 writer.write(c.toString());
@@ -123,8 +116,8 @@ import java.util.Scanner;
 
                 writer.close();
             }
+            private static int contractCounter = 0;
             public static String generateCustomerId() {
-                int contractCounter = 0;
                 contractCounter++;
                 return "C" + contractCounter++;
             }
