@@ -169,7 +169,7 @@ import java.util.Scanner;
                             selectedCar = carList.get(i);
                             System.out.println((i + 1) + ": " + selectedCar.toString());
                         }
-                        System.out.println("Press 1 for Mercedes\nPress 2 for BMW\nPress 3 for Audi");
+                        System.out.println("Press 4 for Mercedes\nPress 5 for BMW\nPress 6 for Audi");
                         choiceOfCar = input.nextInt();
                         selectedCar = carList.get(choiceOfCar - 1);
                         writeContract(customer, true, selectedCar);
@@ -182,7 +182,7 @@ import java.util.Scanner;
                             selectedCar = carList.get(i);
                             System.out.println((i + 1) + ": " + selectedCar.toString());
                         }
-                        System.out.println("Press 1 for Porsche\nPress 2 for Chevrolet\nPress 3 for Ford Mustang");
+                        System.out.println("Press 7 for Porsche\nPress 8 for Chevrolet\nPress 9 for Ford Mustang");
                         choiceOfCar = input.nextInt();
                         selectedCar = carList.get(choiceOfCar - 1);
                         writeContract(customer, true, selectedCar);
@@ -194,6 +194,7 @@ import java.util.Scanner;
 
                     default:
                         System.out.println("Number is invalid, please choose a number between 0-3.");
+                        pickCar(input, customer);
                 }
             }
         }
