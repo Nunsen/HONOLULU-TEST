@@ -8,7 +8,7 @@ public class CustomerCompany extends Customer {
     private int comReg;
 
     //ALLE parametre som customercompany subklassen nu bærer
-    public CustomerCompany(String nameDriver, String address, int zip, String city, int phoneNr, String email, int licenseNr, int driverSD, String comName, String comAddress, int comPhone, int comReg) {
+    public CustomerCompany(String nameDriver, String address, int zip, String city, int phoneNr, String email, int licenseNr, String driverSD, String comName, String comAddress, int comPhone, int comReg) {
         //super keyword, henviser til de fields som subklassen her har arvet
         super(nameDriver, address, zip, city, phoneNr, email, licenseNr, driverSD);
 

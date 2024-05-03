@@ -11,12 +11,12 @@ public class Customer {
     private int phoneNr;
     private String email;
     private int licenseNr;
-    private int driverSD;
+    private String driverSD;
 
     //private int customerId;
 
     //setter navnene, så vi kan overload, variable med samme navn
-    public Customer(String nameDriver, String address, int zip, String city, int phoneNr, String email, int licenseNr, int driverSD) {
+    public Customer(String nameDriver, String address, int zip, String city, int phoneNr, String email, int licenseNr, String driverSD) {
         this.nameDriver = nameDriver;
         this.address = address;
         this.zip = zip;
@@ -57,7 +57,7 @@ public class Customer {
         return licenseNr;
     }
 
-    public int getDriverSD() {
+    public String getDriverSD() {
         return driverSD;
     }
 
