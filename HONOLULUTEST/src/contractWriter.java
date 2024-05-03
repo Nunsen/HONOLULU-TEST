@@ -29,7 +29,6 @@ public class contractWriter {
             CustomerCompany customerCompany = (CustomerCompany) c; // Cast c to CustomerCompany
             writer.write(customerCompany.toString());
         }
-
         /* if (customerIsCompany) {
             writer.write("Customer information:\n");
             writer.write(c.toString());
